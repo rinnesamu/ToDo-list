@@ -51,7 +51,7 @@ public class Task implements ITask {
     public void completeTask() {
         boolean allCompleted = true;
         for (ITask t : subTasks) {
-            if (t.isTaskCompleted()){
+            if (!t.isTaskCompleted()){
                 allCompleted = false;
                 break;
             }
