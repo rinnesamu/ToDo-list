@@ -59,5 +59,16 @@ public class Task implements ITask {
         setTaskCompleted(allCompleted);
     }
 
+    @Override
+    public String toString(){
+        String returnString;
+        if (this.taskCompleted){
+            returnString = this.name + " " + this.date.toString() + " Completed!" ;
+        }else{
+            returnString = this.name + " " + this.date.toString();
+        }
+        return returnString;
+    }
+
 
 }
