@@ -11,4 +11,9 @@ public class Controller implements IController{
     ITask task = new Task(name, date);
     view.addTask(task);
   }
+
+  @Override
+  public void completeTask(ITask task) {
+    task.completeTask();
+  }
 }
