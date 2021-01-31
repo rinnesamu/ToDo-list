@@ -4,6 +4,5 @@ public interface UI {
   void showOptions();
   void addTask(ITask task);
   void showTasks();
-  void completeTask(ITask task);
 
 }

@@ -1,14 +1,12 @@
 import utils.InputScanner;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class TextUI implements UI {
   final String ADD_ANS = "a";
   final String COMPLETE_ANS = "c";
   final String EXIT_ANS = "e";
+
   List<ITask> tasks = new ArrayList();
   IController controller = new Controller(this);
 
@@ -19,7 +17,7 @@ public class TextUI implements UI {
       System.out.println("Enter " + ADD_ANS + " if you want to add a new task");
       System.out.println("Enter " + COMPLETE_ANS + " if you want to complete a task");
       System.out.println("Enter " + EXIT_ANS + " if you want to exit");
-      ans = InputScanner.scanString();
+      ans = InputScanner.scanString().toLowerCase();
       switch (ans) {
         case ADD_ANS:
           System.out.println("Give tasks name.");
@@ -61,10 +59,5 @@ public class TextUI implements UI {
       }
     }
     System.out.println("");
-  }
-
-  @Override
-  public void completeTask(ITask task) {
-
   }
 }
