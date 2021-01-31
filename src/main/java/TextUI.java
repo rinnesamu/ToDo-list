@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Scanner;
 
 public class TextUI implements UI {
+  final String ADD_ANS = "a";
+  final String COMPLETE_ANS = "c";
+  final String EXIT_ANS = "e";
   List<ITask> tasks = new ArrayList();
   IController controller = new Controller(this);
 
@@ -13,12 +16,12 @@ public class TextUI implements UI {
     String ans;
     do {
       showTasks();
-      System.out.println("Enter a if you want to add a new task");
-      System.out.println("Enter c if you want to complete a task");
-      System.out.println("Enter e if you want to exit");
+      System.out.println("Enter " + ADD_ANS + " if you want to add a new task");
+      System.out.println("Enter " + COMPLETE_ANS + " if you want to complete a task");
+      System.out.println("Enter " + EXIT_ANS + " if you want to exit");
       ans = InputScanner.scanString();
       switch (ans) {
-        case "a":
+        case ADD_ANS:
           System.out.println("Give tasks name.");
           String name = InputScanner.scanString();
           System.out.println("Tasks Deadline. First give year:");
@@ -29,19 +32,19 @@ public class TextUI implements UI {
           int day = InputScanner.scanInt();
           controller.createNewTask(name, year, month, day);
           break;
-        case "c":
+        case COMPLETE_ANS:
           System.out.println("Which task do you want to mark completed?");
           int completed = InputScanner.scanInt();
           controller.completeTask(tasks.get(completed - 1));
           break;
-        case "e":
+        case EXIT_ANS:
           System.out.println("Good bye!");
           break;
         default:
           System.out.println("Invalid answer, try again");
           break;
       }
-    } while(!ans.equals("e"));
+    } while(!ans.equals(EXIT_ANS));
   }
 
   public void addTask(ITask task) {
