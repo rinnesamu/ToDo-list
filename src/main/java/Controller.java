@@ -16,4 +16,12 @@ public class Controller implements IController{
   public void completeTask(ITask task) {
     task.completeTask();
   }
+
+  @Override
+  public void createNewTask(String name, int year, int month, int day, ITask parentTask) {
+    Date date = new Date(year, month, day);
+    ITask task = new Task(name, date);
+    parentTask.addTask(task);
+  }
+
 }
