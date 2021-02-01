@@ -56,6 +56,9 @@ public class TextUI implements UI {
         case EXIT_ANS:
           System.out.println("Good bye!");
           break;
+        case "q":
+          testFunction();
+          break;
         default:
           System.out.println("Invalid answer, try again");
           break;
@@ -74,6 +77,10 @@ public class TextUI implements UI {
     }else {
       for (int i = 0; i < mainTasks.size(); i++){
         System.out.println(i+1 + ". " + mainTasks.get(i));
+        for (int j = 0; j < mainTasks.get(i).getSubTasks().size(); j++){
+          System.out.println("  " + (+i+1) + "." + (+j+1) + " " +
+            mainTasks.get(i).getSubTasks().get(j));
+        }
       }
     }
     System.out.println("");
@@ -90,5 +97,16 @@ public class TextUI implements UI {
     System.out.println("And lastly day");
     returnList.add(InputScanner.scanInt());
     return returnList;
+  }
+
+  private void testFunction(){
+    controller.createNewTask("Test1", 2020, 1, 1);
+    controller.createNewTask("Test2", 2020, 1, 1);
+    controller.createNewTask("Test3", 2020, 1, 1);
+    controller.createNewTask("Test4", 2020, 1, 1);
+    controller.createNewTask("Test5", 2020, 1, 1);
+    controller.createNewTask("Test6", 2020, 1, 1, mainTasks.get(2));
+    controller.createNewTask("Test7", 2020, 1, 1, mainTasks.get(2));
+    controller.createNewTask("Test8", 2020, 1, 1, mainTasks.get(4));
   }
 }
