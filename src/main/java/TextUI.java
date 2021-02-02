@@ -7,6 +7,7 @@ public class TextUI implements UI {
   final String COMPLETE_ANS = "c";
   final String EXIT_ANS = "e";
   final String ADD_SUB_ANS = "s";
+  final String REMOVE_TASK = "r";
   final String REMOVE_COMP = "d";
 
   List<ITask> mainTasks = new ArrayList();
@@ -21,6 +22,7 @@ public class TextUI implements UI {
         " if you want to complete a task");
       System.out.println("Enter " + ADD_SUB_ANS +
         " if you want to add subtask to existing task");
+      System.out.println("Enter " + REMOVE_TASK + " if you want to remove task");
       System.out.println("Enter " + REMOVE_COMP +
         " if you want to remove all completed tasks");
       System.out.println("Enter " + EXIT_ANS + " if you want to exit");
@@ -40,7 +42,7 @@ public class TextUI implements UI {
           controller.completeTask(mainTasks.get(completed - 1));
           break;
         case ADD_SUB_ANS:
-          if (mainTasks.size() > 0) {
+          if (checkIfTasksExist()) {
             taskInformation = askTaskInformation();
             System.out.println("Which task is parent task?");
             ITask parent =
@@ -51,9 +53,13 @@ public class TextUI implements UI {
               (int) taskInformation.get(2),
               (int) taskInformation.get(3),
               parent);
-          }else{
-            System.out.println(
-              "You can't add subtask because you don't have any tasks");
+          }
+          break;
+        case REMOVE_TASK:
+          System.out.println("What task you want to remove?");
+          if(checkIfTasksExist()) {
+            removeMainTask(
+              mainTasks.get(InputScanner.scanIntMinMax(1, mainTasks.size()) - 1));
           }
           break;
         case REMOVE_COMP:
@@ -113,6 +119,15 @@ public class TextUI implements UI {
     System.out.println("And lastly day");
     returnList.add(InputScanner.scanInt());
     return returnList;
+  }
+
+  private boolean checkIfTasksExist(){
+    if (mainTasks.size() == 0){
+      System.out.println(
+        "Cant execute this operation, because there is no tasks!");
+        return false;
+    }
+    return true;
   }
 
   private void testFunction(){
