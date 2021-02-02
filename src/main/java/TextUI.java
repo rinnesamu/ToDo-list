@@ -7,6 +7,7 @@ public class TextUI implements UI {
   final String COMPLETE_ANS = "c";
   final String EXIT_ANS = "e";
   final String ADD_SUB_ANS = "s";
+  final String REMOVE_COMP = "d";
 
   List<ITask> mainTasks = new ArrayList();
   IController controller = new Controller(this);
@@ -20,6 +21,8 @@ public class TextUI implements UI {
         " if you want to complete a task");
       System.out.println("Enter " + ADD_SUB_ANS +
         " if you want to add subtask to existing task");
+      System.out.println("Enter " + REMOVE_COMP +
+        " if you want to remove all completed tasks");
       System.out.println("Enter " + EXIT_ANS + " if you want to exit");
       ans = InputScanner.scanString().toLowerCase();
       switch (ans) {
@@ -33,7 +36,7 @@ public class TextUI implements UI {
           break;
         case COMPLETE_ANS:
           System.out.println("Which task do you want to mark completed?");
-          int completed = InputScanner.scanInt();
+          int completed = InputScanner.scanIntMinMax(1, mainTasks.size());
           controller.completeTask(mainTasks.get(completed - 1));
           break;
         case ADD_SUB_ANS:
@@ -50,8 +53,11 @@ public class TextUI implements UI {
               parent);
           }else{
             System.out.println(
-              "You can't add subtask because you don't have tasks");
+              "You can't add subtask because you don't have any tasks");
           }
+          break;
+        case REMOVE_COMP:
+          controller.removeAllCompleted();
           break;
         case EXIT_ANS:
           System.out.println("Good bye!");
@@ -66,7 +72,7 @@ public class TextUI implements UI {
     } while(!ans.equals(EXIT_ANS));
   }
 
-  public void addTask(ITask task) {
+  public void addMainTask(ITask task) {
     mainTasks.add(task);
   }
 
@@ -84,6 +90,16 @@ public class TextUI implements UI {
       }
     }
     System.out.println("");
+  }
+
+  @Override
+  public List<ITask> getMainTasks() {
+    return mainTasks;
+  }
+
+  @Override
+  public void removeMainTask(ITask task) {
+    mainTasks.remove(task);
   }
 
   private List<Object> askTaskInformation(){

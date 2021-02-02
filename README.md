@@ -10,4 +10,7 @@ My own project. Just for fun
 * Database
 * Database connections
 * Complete subtasks
+* Remove task
+* Remove all completed tasks
+* Remove subtask
 
