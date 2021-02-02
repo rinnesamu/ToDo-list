@@ -8,6 +8,7 @@ public class Task implements ITask {
 
     private List<ITask> subTasks = new ArrayList<ITask>();
     private boolean taskCompleted = false;
+    private ITask parentTask;
 
     public Task(){}
 
@@ -20,8 +21,9 @@ public class Task implements ITask {
         return subTasks;
     }
 
-    public void addTask(ITask task) {
+    public void addSubTask(ITask task) {
         subTasks.add(task);
+        task.setParentTask(this);
     }
 
     public String getName() {
@@ -57,6 +59,22 @@ public class Task implements ITask {
             }
         }
         setTaskCompleted(allCompleted);
+    }
+
+    @Override
+    public void setParentTask(ITask task) {
+        parentTask = task;
+    }
+
+    @Override
+    public ITask getParentTask() {
+        return parentTask;
+    }
+
+    @Override
+    public void deleteParentTask() {
+        parentTask.getSubTasks().remove(this);
+        parentTask = null;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class Controller implements IController{
   public void createNewTask(String name, int year, int month, int day, ITask parentTask) {
     Date date = new Date(year, month, day);
     ITask task = new Task(name, date);
-    parentTask.addTask(task);
+    parentTask.addSubTask(task);
   }
 
   @Override
@@ -39,6 +39,11 @@ public class Controller implements IController{
     for (ITask task : tasksToRemove) {
       view.removeMainTask(task);
     }
+  }
+
+  @Override
+  public void removeSubtask(ITask task) {
+    task.deleteParentTask();
   }
 
 }

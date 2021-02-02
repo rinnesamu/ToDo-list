@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.Calendar;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,16 +17,20 @@ class TaskTest {
 
   @Test
   void getSubTasks() {
-    assertEquals(0, task.getSubTasks().size(), "Wrong amount of subtasks.");
-    task.addTask(new Task());
-    assertEquals(1, task.getSubTasks().size(), "Wrong amount of subtasks, getting subtask failed.");
+    assertEquals(0, task.getSubTasks().size(),
+      "Wrong amount of subtasks.");
+    task.addSubTask(new Task());
+    assertEquals(1, task.getSubTasks().size(),
+      "Wrong amount of subtasks, getting subtask failed.");
   }
 
   @Test
-  void addTask() {
-    assertEquals(0, task.getSubTasks().size(), "Wrong amount of subtasks.");
-    task.addTask(new Task());
-    assertEquals(1, task.getSubTasks().size(), "Wrong amount of subtasks, adding subtask failed.");
+  void addSubTask() {
+    assertEquals(0, task.getSubTasks().size(),
+      "Wrong amount of subtasks.");
+    task.addSubTask(new Task());
+    assertEquals(1, task.getSubTasks().size(),
+      "Wrong amount of subtasks, adding subtask failed.");
   }
 
   @Test
@@ -76,13 +79,37 @@ class TaskTest {
 
     ITask newTask = new Task();
     ITask secondNewTask = new Task();
-    newTask.addTask(secondNewTask);
+    newTask.addSubTask(secondNewTask);
     newTask.completeTask();
-    assertFalse(newTask.isTaskCompleted(), "Task was completed too early");
+    assertFalse(newTask.isTaskCompleted(),
+      "Task was completed too early");
     secondNewTask.completeTask();
     newTask.completeTask();
-    assertTrue(newTask.isTaskCompleted(), "completeTask with subtask failed");
+    assertTrue(newTask.isTaskCompleted(),
+      "completeTask with subtask failed");
+  }
 
+  @Test
+  void setParentTask(){
+    Task newTask = new Task();
+    assertNull(newTask.getParentTask(), "Parent task should be null");
+    task.addSubTask(newTask);
+    assertEquals(task, newTask.getParentTask(),
+      "Couldn't find parentTask");
+  }
 
+  @Test
+  void deleteParentTask(){
+    Task newTask = new Task();
+    task.addSubTask(newTask);
+    assertEquals(task, newTask.getParentTask(),
+      "Couldn't find parentTask");
+    assertEquals(1, task.getSubTasks().size(),
+      "Task wasn't added to ParentTasks subtasks");
+    newTask.deleteParentTask();
+    assertEquals(0, task.getSubTasks().size(),
+      "Task wasn't removed from ParentTasks subtasks");
+    assertEquals(null, newTask.getParentTask(),
+      "Still found ParentTask");
   }
 }

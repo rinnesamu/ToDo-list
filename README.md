@@ -9,8 +9,8 @@ My own project. Just for fun
 * Add daily tasks
 * Database
 * Database connections
-* Complete subtasks
+* Complete subtasks (backend working)
 * ~~Remove task~~
 * ~~Remove all completed tasks~~
-* Remove subtask
+* Remove subtask (backend working)
 
