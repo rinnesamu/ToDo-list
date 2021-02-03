@@ -4,7 +4,7 @@ My own project. Just for fun
 
 ## ToDo:
 
-* Better UI
+* Better view.UI
 * ~~Show subtasks~~
 * Add daily tasks
 * Database

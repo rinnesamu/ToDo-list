@@ -1,3 +1,7 @@
+package view;
+
+import model.ITask;
+
 import java.util.List;
 
 public interface UI {

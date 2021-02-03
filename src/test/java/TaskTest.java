@@ -1,3 +1,5 @@
+import model.ITask;
+import model.Task;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -82,7 +84,7 @@ class TaskTest {
     newTask.addSubTask(secondNewTask);
     newTask.completeTask();
     assertFalse(newTask.isTaskCompleted(),
-      "Task was completed too early");
+      "Model.Task was completed too early");
     secondNewTask.completeTask();
     newTask.completeTask();
     assertTrue(newTask.isTaskCompleted(),
@@ -105,10 +107,10 @@ class TaskTest {
     assertEquals(task, newTask.getParentTask(),
       "Couldn't find parentTask");
     assertEquals(1, task.getSubTasks().size(),
-      "Task wasn't added to ParentTasks subtasks");
+      "Model.Task wasn't added to ParentTasks subtasks");
     newTask.deleteParentTask();
     assertEquals(0, task.getSubTasks().size(),
-      "Task wasn't removed from ParentTasks subtasks");
+      "Model.Task wasn't removed from ParentTasks subtasks");
     assertEquals(null, newTask.getParentTask(),
       "Still found ParentTask");
   }
