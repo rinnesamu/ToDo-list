@@ -5,9 +5,9 @@ import model.ITask;
 import java.util.List;
 
 public interface UI {
-  void showOptions();
+  //void showOptions();
   void addMainTask(ITask task);
-  void showTasks();
+  //void showTasks();
   List<ITask> getMainTasks();
   void removeMainTask(ITask task);
 

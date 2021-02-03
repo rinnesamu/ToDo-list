@@ -22,7 +22,7 @@
                 <artifactId>javafx-maven-plugin</artifactId>
                 <version>8.8.3</version>
                 <configuration>
-                    <mainClass>main</mainClass>
+                    <mainClass>application.Start</mainClass>
                 </configuration>
             </plugin>
         </plugins>
