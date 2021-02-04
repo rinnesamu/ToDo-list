@@ -29,14 +29,15 @@ public class Start extends Application {
     try {
       loader = new FXMLLoader();
       loader.setLocation(getClass().getClassLoader().getResource("UI.fxml"));
-      grid = (GridPane) loader.load();
+      grid = loader.load();
 
       Scene scene = new Scene(grid);
       primaryStage.setScene(scene);
-      /*primaryStage.setHeight(800.0);
+      /*
+      primaryStage.setHeight(800.0);
       primaryStage.setWidth(1200.0);
-
-      primaryStage.centerOnScreen();*/
+      primaryStage.centerOnScreen();
+      */
       primaryStage.show();
     } catch (IOException e) {
       e.printStackTrace();
