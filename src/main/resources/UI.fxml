@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -15,7 +16,15 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ListView fx:id="dailyTasks" onMouseClicked="#get" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
-      <ListView fx:id="normalTasks" onMouseClicked="#onClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <TableView fx:id="dailyTasksView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+        <columns>
+          <TableColumn fx:id="dailyName" prefWidth="75.0" text="C1" />
+        </columns>
+      </TableView>
+      <TableView fx:id="mainTasksView" onMouseClicked="#testMethod" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="normalName" prefWidth="75.0" text="C1" />
+        </columns>
+      </TableView>
    </children>
 </GridPane>
