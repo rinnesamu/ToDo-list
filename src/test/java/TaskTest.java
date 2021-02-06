@@ -19,8 +19,7 @@ class TaskTest {
 
   @Test
   void getSubTasks() {
-    assertEquals(0, task.getSubTasks().size(),
-      "Wrong amount of subtasks.");
+    assertNull(task.getSubTasks(), "Wrong amount of subtasks.");
     task.addSubTask(new Task());
     assertEquals(1, task.getSubTasks().size(),
       "Wrong amount of subtasks, getting subtask failed.");
@@ -28,8 +27,7 @@ class TaskTest {
 
   @Test
   void addSubTask() {
-    assertEquals(0, task.getSubTasks().size(),
-      "Wrong amount of subtasks.");
+    assertNull(task.getSubTasks(), "Wrong amount of subtasks.");
     task.addSubTask(new Task());
     assertEquals(1, task.getSubTasks().size(),
       "Wrong amount of subtasks, adding subtask failed.");

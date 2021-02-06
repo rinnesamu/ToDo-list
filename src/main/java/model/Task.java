@@ -7,8 +7,7 @@ import java.util.List;
 public class Task implements ITask {
     private String name;
     private Date date;
-
-    private List<ITask> subTasks = new ArrayList<ITask>();
+    private List<ITask> subTasks;
     private boolean taskCompleted = false;
     private ITask parentTask;
 
@@ -19,11 +18,12 @@ public class Task implements ITask {
         this.date = dueDate;
     }
 
-    public List<ITask> getSubTasks() {
-        return subTasks;
-    }
+    public List<ITask> getSubTasks() { return subTasks; }
 
     public void addSubTask(ITask task) {
+        if (subTasks == null){
+            subTasks = new ArrayList<>();
+        }
         subTasks.add(task);
         task.setParentTask(this);
     }
@@ -54,26 +54,25 @@ public class Task implements ITask {
 
     public void completeTask() {
         boolean allCompleted = true;
-        for (ITask t : subTasks) {
-            if (!t.isTaskCompleted()){
-                allCompleted = false;
-                break;
+        if (subTasks != null) {
+            for (ITask t : subTasks) {
+                if (!t.isTaskCompleted()) {
+                    allCompleted = false;
+                    break;
+                }
             }
         }
         setTaskCompleted(allCompleted);
     }
 
-    @Override
     public void setParentTask(ITask task) {
         parentTask = task;
     }
 
-    @Override
     public ITask getParentTask() {
         return parentTask;
     }
 
-    @Override
     public void deleteParentTask() {
         parentTask.getSubTasks().remove(this);
         parentTask = null;

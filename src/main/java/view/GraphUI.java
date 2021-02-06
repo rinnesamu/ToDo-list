@@ -29,18 +29,25 @@ public class GraphUI implements UI {
   TableView dailyTasksView = new TableView();
 
   @FXML
-  TableView<Task> normalTasksView = new TableView<>();
+  TableView<ITask> normalTasksView = new TableView<>();
 
   @FXML
   TableColumn<ITask, String> dailyName;
 
   @FXML
-  TableColumn<Task, String> normalName = new TableColumn<>("Testiasd");
+  TableColumn<ITask, String> normalName = new TableColumn<>("Name");
+
+  @FXML
+  TableColumn<ITask, String> normalDue = new TableColumn<>("Name");
+
+  ObservableList<ITask> test;
 
 
   @Override
   public void addMainTask(final ITask task) {
     normalTasks.getItems().add(task);
+    test.add(task);
+    //normalTasksView.setItems(normalTasks.getItems());
 
     /*EventHandler<MouseEvent> handler = new EventHandler<MouseEvent>(){
       @Override
@@ -66,7 +73,6 @@ public class GraphUI implements UI {
   @FXML
   public void onClick() {
     controller.createNewTask("Test" + count, count, count, count);
-    System.out.println("Working");
   }
 
   @FXML
@@ -80,25 +86,12 @@ public class GraphUI implements UI {
   }
 
   @FXML
-  public void testMethod(){
-    System.out.println(normalTasksView.getColumns());
-    System.out.println(normalTasksView.getItems());
-    System.out.println(normalName.getCellData(0));
-  }
-
-  @FXML
   public void initialize() {
-    //TODO find out why table contents are not shown.
-    normalName.setCellValueFactory(new PropertyValueFactory<Task, String>("name"));
-    final ObservableList<Task> test = FXCollections.observableArrayList(
-      new Task("Test", new Date(1,1,1)),
-      new Task("Test2", new Date(1,1,1))
-    );
+    test = FXCollections.observableArrayList();
+    normalName.setCellValueFactory(new PropertyValueFactory<ITask, String>("name"));
+    normalDue.setCellValueFactory(new PropertyValueFactory<ITask, String>("date"));
     normalTasksView.setItems(test);
-    normalTasksView.getColumns().add(normalName);
-    System.out.println(normalTasksView.getColumns());
-    System.out.println(normalTasksView.getItems());
-    System.out.println(normalName.getCellData(0));
+    //normalTasksView.getColumns().add(normalName);
   }
 
 

@@ -16,14 +16,15 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <TableView fx:id="dailyTasksView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+      <TableView fx:id="dailyTasksView" onMouseClicked="#onClick" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
         <columns>
-          <TableColumn fx:id="dailyName" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="dailyName" prefWidth="75.0" text="Name" />
         </columns>
       </TableView>
-      <TableView fx:id="mainTasksView" onMouseClicked="#testMethod" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TableView fx:id="normalTasksView" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="normalName" prefWidth="75.0" text="C1" />
+          <TableColumn fx:id="normalName" prefWidth="150.0" resizable="false" text="Name" />
+            <TableColumn fx:id="normalDue" prefWidth="150.0" resizable="false" text="Due" />
         </columns>
       </TableView>
    </children>
